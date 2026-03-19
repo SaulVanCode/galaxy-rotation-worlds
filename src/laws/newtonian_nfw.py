@@ -28,10 +28,15 @@ from src.laws.interface import GravityLaw
 
 # Critical density at z=0 in internal units
 # rho_crit = 3 H0^2 / (8 pi G)
-# H0 = 70 km/s/Mpc = 70 / 1e3 km/s/kpc = 0.07 km/s/kpc
-# rho_crit = 3 * (0.07)^2 / (8 * pi * 4.3009e-3) = 0.0147 / 0.10808 = 135.9
-# More precisely using standard value:
-RHO_CRIT: float = 127.4  # M_sun / kpc^3 (H0=70 km/s/Mpc)
+# H0 = 70 km/s/Mpc = 0.07 km/s/kpc
+# G = 4.3009e-6 kpc (km/s)^2 / M_sun
+# rho_crit = 3 * 0.07^2 / (8 * pi * 4.3009e-6)
+#          = 0.0147 / 1.0808e-4 = 135960 ... that's wrong too
+# Correct from SI: rho_crit = 9.204e-27 kg/m^3
+#   = 9.204e-27 * (3.0857e19)^3 / 1.989e30 M_sun/kpc^3
+#   = 9.204e-27 * 2.938e58 / 1.989e30 = 135.9 M_sun/kpc^3
+# Verified: matches 3*H0^2/(8*pi*G) with G in kpc units
+RHO_CRIT: float = 135.9  # M_sun / kpc^3 (H0=70 km/s/Mpc)
 
 
 class NewtonianNFWLaw(GravityLaw):

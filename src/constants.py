@@ -12,9 +12,12 @@ All modules import constants from here. No other module may define G or a0.
 """
 
 # Gravitational constant in internal units
-# G = 4.3009e-3 kpc (km/s)^2 / M_sun
-# Source: standard value, G = 6.674e-11 m^3 kg^-1 s^-2 converted
-G_INTERNAL: float = 4.3009e-3  # kpc km^2 s^-2 M_sun^-1
+# G = 4.3009e-3 pc (km/s)^2 / M_sun (PARSEC, standard reference)
+# Since we use kpc: G = 4.3009e-3 / 1000 = 4.3009e-6 kpc (km/s)^2 / M_sun
+# Verification: G_SI = 6.674e-11 m^3 kg^-1 s^-2
+#   G = G_SI * M_sun / (kpc_m * (km/s)^2_in_m2s2)
+#   G = 6.674e-11 * 1.989e30 / (3.0857e19 * 1e6) = 4.3016e-6 ✓
+G_INTERNAL: float = 4.3009e-6  # kpc (km/s)^2 M_sun^-1
 
 # MOND critical acceleration in internal units
 # a0 = 1.2e-10 m/s^2
