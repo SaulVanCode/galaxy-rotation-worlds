@@ -1,0 +1,48 @@
+{
+  "fitness_vectors": [
+    {
+      "family": "Newton-baryons",
+      "f1_fit": 0.0389,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.5,
+      "f4_transfer": 0.7601
+    },
+    {
+      "family": "Newton+NFW",
+      "f1_fit": 0.432,
+      "f2_universality": 0.4891,
+      "f3_simplicity": 0.2,
+      "f4_transfer": 0.9003
+    },
+    {
+      "family": "MOND-simple",
+      "f1_fit": 0.2158,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.25,
+      "f4_transfer": 0.8786
+    },
+    {
+      "family": "PiecewiseRegime",
+      "f1_fit": 0.3622,
+      "f2_universality": 0.3024,
+      "f3_simplicity": 0.0769,
+      "f4_transfer": 0.907
+    },
+    {
+      "family": "PiecewiseRegime-universal",
+      "f1_fit": 0.2317,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.1111,
+      "f4_transfer": 0.8761
+    }
+  ],
+  "pareto_front": [
+    "Newton-baryons",
+    "Newton+NFW",
+    "MOND-simple",
+    "PiecewiseRegime",
+    "PiecewiseRegime-universal"
+  ],
+  "dominated": {},
+  "n_train_galaxies": 99
+}
