@@ -1,0 +1,47 @@
+{
+  "Newton-baryons": {
+    "median_chi2_reduced": 24.700761240876894,
+    "median_bic": 407.21319768873497,
+    "iqr_bic": 1586.3306016991232,
+    "n_galaxies": 99,
+    "n_params": 2,
+    "median_upsilon_disk": 1.499999999811405,
+    "wins": 4
+  },
+  "Newton+NFW": {
+    "median_chi2_reduced": 1.3146735697789185,
+    "median_bic": 26.166923705779144,
+    "iqr_bic": 40.06301226115002,
+    "n_galaxies": 99,
+    "n_params": 4,
+    "median_upsilon_disk": 0.29675476194389433,
+    "wins": 43
+  },
+  "MOND-simple": {
+    "median_chi2_reduced": 3.634254422043398,
+    "median_bic": 46.80175613333319,
+    "iqr_bic": 153.3736235315871,
+    "n_galaxies": 99,
+    "n_params": 2,
+    "median_upsilon_disk": 0.39983649264883264,
+    "wins": 18
+  },
+  "PiecewiseRegime": {
+    "median_chi2_reduced": 1.7607867418538168,
+    "median_bic": 29.98511006258262,
+    "iqr_bic": 40.238457400115074,
+    "n_galaxies": 99,
+    "n_params": 6,
+    "median_upsilon_disk": 0.8705318848487705,
+    "wins": 22
+  },
+  "PiecewiseRegime-universal": {
+    "median_chi2_reduced": 3.316344031814191,
+    "median_bic": 50.8727073188498,
+    "iqr_bic": 195.92931204019052,
+    "n_galaxies": 99,
+    "n_params": 2,
+    "median_upsilon_disk": 0.7620532796416879,
+    "wins": 12
+  }
+}
