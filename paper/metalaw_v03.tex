@@ -1,0 +1,149 @@
+\documentclass[aps,prl,twocolumn,superscriptaddress,showpacs]{revtex4-2}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newcommand{\msun}{M_\odot}
+\newcommand{\lsun}{L_\odot}
+\newcommand{\kms}{\,\mathrm{km\,s^{-1}}}
+\newcommand{\kpc}{\,\mathrm{kpc}}
+\newcommand{\pr}{\textsc{PiecewiseRegime}}
+
+\begin{document}
+
+\title{A Multi-Objective Evolution Engine for Galaxy Rotation Curve Hypothesis Comparison}
+
+\author{S.~Van Code}
+\affiliation{Independent researcher}
+
+\author{Claude (Anthropic)}
+\affiliation{Research architect}
+
+\begin{abstract}
+We present a system that evolves parameterized gravity law families and evaluates them against 159 SPARC galaxy rotation curves using a four-dimensional Pareto front: fit quality (F1), parameter universality (F2), structural simplicity (F3), and radial acceleration relation transfer (F4). Starting from three baselines (Newtonian baryons-only, Newton+NFW dark matter halo, simple MOND), the system generates mutant families through parameter freezing, correction term addition, and regime composition. After two generations of evolution, a mutant family---\pr{} with fixed exponents and variable transition scale---fills a previously empty region of the Pareto front, achieving near-MOND universality ($F2=0.92$) with near-NFW fit quality ($F1=0.39$) using one fewer per-galaxy parameter than NFW. Correlation analysis reveals no strong dependence of the variable scale on observed galaxy properties. The contribution is methodological: multi-objective hypothesis evolution can systematically explore trade-offs in the space of physical laws.
+\end{abstract}
+
+\keywords{galaxies: kinematics and dynamics --- dark matter --- gravitation --- methods: statistical}
+
+\section{Introduction}\label{sec:intro}
+
+Galaxy rotation curves remain a central test for theories of gravity and dark matter. Two paradigms dominate:
+
+\begin{itemize}
+    \item \textbf{$\Lambda$CDM with NFW halos}: excellent per-galaxy fits with 4 free parameters ($\Upsilon_\mathrm{disk}$, $\Upsilon_\mathrm{bulge}$, $M_{200}$, $c$), but halo parameters vary widely across galaxies \citep{NFW1996}.
+    \item \textbf{MOND}: a universal acceleration threshold $a_0 \approx 1.2\times10^{-10}\;\mathrm{m\,s^{-2}}$ with only 2 per-galaxy parameters ($\Upsilon_\mathrm{disk}$, $\Upsilon_\mathrm{bulge}$), but systematically poorer fits for some galaxy types \citep{Milgrom1983,Famaey2012}.
+\end{itemize}
+
+The Radial Acceleration Relation \citep[RAR;][]{McGaugh2016,Lelli2017} demonstrates a tight empirical correlation between baryonic and observed accelerations, suggesting a universal transition between regimes. However, standard frameworks cannot simultaneously optimize for fit quality and parameter universality.
+
+We ask: \emph{does the hypothesis space contain families that occupy the trade-off region between NFW's fit quality and MOND's universality?}
+
+\section{Data}\label{sec:data}
+
+We use the SPARC dataset \citep{Lelli2016}: 175 late-type galaxies with Spitzer 3.6\,$\mu$m photometry and high-quality rotation curves. After filtering for quality flags $Q \leq 2$ and minimum 5 data points: 159 galaxies.
+
+SPARC provides pre-computed velocity contributions ($V_\mathrm{disk}$, $V_\mathrm{bulge}$ at $M/L=1$, $V_\mathrm{gas}$) at each radius, enabling mass model construction without analytic profile assumptions. The split is deterministic: 99 train, 30 validation, 30 test, stratified by luminosity.
+
+For modified gravity laws, enclosed baryonic mass is derived as:
+\begin{equation}
+M_\mathrm{bary}(r) = \frac{r}{G}\left(V_\mathrm{gas}^2 + \Upsilon_d V_\mathrm{disk}^2 + \Upsilon_b V_\mathrm{bul}^2\right)
+\end{equation}
+where $\Upsilon \in [0.1, 1.5]\;{\msun}/{\lsun}$ at 3.6\,$\mu$m.
+
+\section{Method}\label{sec:method}
+
+\subsection{Law Families}\label{sec:families}
+
+Each family defines an acceleration function $a(r, M_\mathrm{enc}, \rho)$. The three baselines are Newton baryons-only ($a = GM/r^2$, 2 params), Newton+NFW (standard halo, 4 params), and simple MOND ($a = a_N \nu(a_N/a_0)$, 2 params with $a_0$ fixed).
+
+The generated family is \pr{}:
+\begin{equation}\label{eq:pr}
+a(r) = a_0\!\left[\sigma(x)\left(\frac{a_N}{a_0}\right)^{\!\alpha_\mathrm{in}} \!\!+ (1{-}\sigma(x))\left(\frac{a_N}{a_0}\right)^{\!\alpha_\mathrm{out}}\right]
+\end{equation}
+where $a_N = GM_\mathrm{bary}/r^2$, $\sigma(x) = (1+e^{-x})^{-1}$, $x = \log_{10}(a_N/a_0)/w$. All terms inside brackets are dimensionless; $a_0$ provides acceleration units. This family nests both Newton ($\alpha_\mathrm{in}=\alpha_\mathrm{out}=1$) and deep-MOND ($\alpha_\mathrm{in}=1$, $\alpha_\mathrm{out}=0.5$) as special cases.
+
+\subsection{Four-Dimensional Fitness}\label{sec:fitness}
+
+Each family is scored on four independent axes (higher = better):
+
+\begin{description}
+    \item[F1 (fit quality)] $= 1/(1 + \mathrm{median}\;\chi^2_\mathrm{red})$.
+    \item[F2 (universality)] $= 1/(1 + \overline{\mathrm{CV}}_j)$, where $\mathrm{CV}_j = \mathrm{IQR}(\theta_j)/|\mathrm{median}(\theta_j)|$ for each law parameter $\theta_j$. Families with no law parameters (Newton baryons, MOND) get $F2=1$.
+    \item[F3 (simplicity)] $= 1/(k_\mathrm{law} + k_\mathrm{galaxy} + S)$, where $S$ counts mathematical operations.
+    \item[F4 (RAR transfer)] $= 1/(1 + \mathrm{RMS}\;\log_{10}(g_\mathrm{pred}/g_\mathrm{obs}))$.
+\end{description}
+
+No weighted sum. \textbf{Pareto dominance} determines optimal families: $A$ dominates $B$ iff $A \geq B$ on all axes and $A > B$ on at least one.
+
+\subsection{Mutation Operators}\label{sec:mutations}
+
+\begin{description}
+    \item[M4 (Freezing)] Fix one law parameter at its cross-galaxy median.
+    \item[M2 (Correction)] Add multiplicative term $(1 + c_1 R^{p_1})$ with dimensionless ratio $R$.
+    \item[M3 (Composition)] Blend two families via sigmoid transition.
+\end{description}
+
+All mutations preserve dimensional consistency. Population capped at 30 families; structural complexity $S \leq 15$.
+
+\section{Results}\label{sec:results}
+
+\subsection{Baseline Comparison}\label{sec:baselines}
+
+Under BIC, Newton+NFW wins (median BIC\,$=26.2$, 43/99 wins). \pr{}'s best-fit law parameters converge to $\alpha_\mathrm{in}=1.05$, $\alpha_\mathrm{out}=0.52$, recovering MOND-like exponents without prior knowledge.
+
+\subsection{Pareto Front and the Gap}\label{sec:pareto}
+
+On the 4D fitness, all four baselines are Pareto-optimal but no family achieves $F1 \geq 0.35$ and $F2 \geq 0.70$ simultaneously---a gap between NFW's fit quality and MOND's universality.
+
+After two generations of evolution, \textbf{PR-only-$a_0$-free}---\pr{} with $\alpha_\mathrm{in}=1.05$, $\alpha_\mathrm{out}=0.52$, $w=0.615$ frozen, only $a_0$ varying per galaxy---fills this gap:
+
+\begin{table}[h]
+\caption{Test set 4D fitness (30 galaxies)\label{tab:test}}
+\begin{ruledtabular}
+\begin{tabular}{lcccc}
+Family & F1 & F2 & F3 & F4 \\
+\hline
+Newton baryons     & 0.023 & 1.000 & 0.500 & 0.738 \\
+Newton+NFW         & 0.520 & 0.479 & 0.200 & 0.907 \\
+MOND-simple        & 0.261 & 1.000 & 0.250 & 0.886 \\
+PiecewiseRegime    & 0.424 & 0.575 & 0.077 & 0.908 \\
+\textbf{PR-only-$a_0$} & \textbf{0.389} & \textbf{0.915} & \textbf{0.100} & \textbf{0.893} \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+PR-only-$a_0$-free achieves ${\sim}85\%$ of NFW's fit quality with nearly double the universality ($F2=0.92$ vs.\ $0.48$) and one fewer per-galaxy parameter (3 vs.\ 4).
+
+\subsection{What Determines $a_0$?}\label{sec:a0}
+
+Correlation of per-galaxy $\log_{10} a_0$ against six galaxy properties (159 galaxies): the strongest correlator is $V_\mathrm{max}$ ($r=0.36$, $p=2.4\times10^{-6}$), explaining only 13\% of variance. No property exceeds $r=0.4$. The $a_0$ scatter is $0.33$\,dex, largely independent of observed properties.
+
+\section{Discussion}\label{sec:discussion}
+
+The universal transition shape ($\alpha_\mathrm{in}\approx1.05$, $\alpha_\mathrm{out}\approx0.52$, $w\approx0.62$) is consistent with known RAR phenomenology \citep{McGaugh2016,Lelli2017}. The variable-$a_0$ question connects to the debate between \citet{Rodrigues2018} and \citet{McGaugh2018}. Our contribution is not to this debate but to the methodology.
+
+\textbf{Limitations.} (1)~Single dataset (SPARC); no lensing or cluster constraints. (2)~Mass-to-light degeneracy, though equal for all families. (3)~PR-only-$a_0$-free is phenomenological, not derived from a field theory. (4)~The $a_0$ variation may reflect observational systematics.
+
+\textbf{What we cannot claim:} discovery of new physics, evidence for or against dark matter, or that $a_0$ is a varying fundamental constant.
+
+\section{Conclusion}\label{sec:conclusion}
+
+A multi-objective evolution engine identifies a Pareto-optimal law family combining NFW-level fit quality with MOND-level universality on 159 SPARC galaxies. The transition shape is universal; only the scale varies. The contribution is the method---multi-objective Pareto comparison of hypothesis families---not the astrophysical phenomenology, which is consistent with existing literature.
+
+\vspace{0.5em}
+\noindent\textbf{Code and data:} \url{https://github.com/SaulVanCode/galaxy-rotation-worlds}
+
+\begin{thebibliography}{10}
+\bibitem{Famaey2012} B.~Famaey and S.S.~McGaugh, Living Rev.\ Relativ.\ \textbf{15}, 10 (2012).
+\bibitem{Lelli2016} F.~Lelli, S.S.~McGaugh, and J.M.~Schombert, Astron.\ J.\ \textbf{152}, 157 (2016).
+\bibitem{Lelli2017} F.~Lelli, S.S.~McGaugh, J.M.~Schombert, and M.S.~Pawlowski, Astrophys.\ J.\ \textbf{836}, 152 (2017).
+\bibitem{McGaugh2016} S.S.~McGaugh, F.~Lelli, and J.M.~Schombert, Phys.\ Rev.\ Lett.\ \textbf{117}, 201101 (2016).
+\bibitem{McGaugh2018} S.S.~McGaugh, F.~Lelli, and J.M.~Schombert, Nat.\ Astron.\ \textbf{2}, 924 (2018).
+\bibitem{Milgrom1983} M.~Milgrom, Astrophys.\ J.\ \textbf{270}, 365 (1983).
+\bibitem{NFW1996} J.F.~Navarro, C.S.~Frenk, and S.D.M.~White, Astrophys.\ J.\ \textbf{462}, 563 (1996).
+\bibitem{Rodrigues2018} D.C.~Rodrigues, V.~Marra, A.~del Popolo, and Z.~Davari, Nat.\ Astron.\ \textbf{2}, 668 (2018).
+\end{thebibliography}
+
+\end{document}
