@@ -1,0 +1,352 @@
+{
+  "generation": 2,
+  "n_families": 13,
+  "fitness_vectors": [
+    {
+      "family": "Newton-baryons",
+      "f1_fit": 0.0389,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.5,
+      "f4_transfer": 0.7601
+    },
+    {
+      "family": "Newton+NFW",
+      "f1_fit": 0.432,
+      "f2_universality": 0.4891,
+      "f3_simplicity": 0.2,
+      "f4_transfer": 0.9003
+    },
+    {
+      "family": "MOND-simple",
+      "f1_fit": 0.2158,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.25,
+      "f4_transfer": 0.8786
+    },
+    {
+      "family": "PiecewiseRegime",
+      "f1_fit": 0.3622,
+      "f2_universality": 0.3024,
+      "f3_simplicity": 0.0769,
+      "f4_transfer": 0.907
+    },
+    {
+      "family": "PiecewiseRegime-universal",
+      "f1_fit": 0.2317,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.1111,
+      "f4_transfer": 0.8761
+    },
+    {
+      "family": "PR-M4(w=0.615)",
+      "f1_fit": 0.4194,
+      "f2_universality": 0.693,
+      "f3_simplicity": 0.0833,
+      "f4_transfer": 0.9058
+    },
+    {
+      "family": "PR-M4(ai=1.05,ao=0.52)",
+      "f1_fit": 0.3965,
+      "f2_universality": 0.4199,
+      "f3_simplicity": 0.0909,
+      "f4_transfer": 0.9017
+    },
+    {
+      "family": "MOND+corr(r/R0)",
+      "f1_fit": 0.5198,
+      "f2_universality": 0.2161,
+      "f3_simplicity": 0.125,
+      "f4_transfer": 0.9045
+    },
+    {
+      "family": "MOND+corr(a_N/a0)",
+      "f1_fit": 0.4554,
+      "f2_universality": 0.1608,
+      "f3_simplicity": 0.125,
+      "f4_transfer": 0.9088
+    },
+    {
+      "family": "PR-M4(w+ao frozen)",
+      "f1_fit": 0.3923,
+      "f2_universality": 0.6968,
+      "f3_simplicity": 0.0909,
+      "f4_transfer": 0.9009
+    },
+    {
+      "family": "PR-only-a0-free",
+      "f1_fit": 0.3736,
+      "f2_universality": 0.8963,
+      "f3_simplicity": 0.1,
+      "f4_transfer": 0.8983
+    },
+    {
+      "family": "MOND+corr(r/R0)-universal",
+      "f1_fit": 0.2703,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.1667,
+      "f4_transfer": 0.8924
+    },
+    {
+      "family": "MOND+corr(a/a0)-universal",
+      "f1_fit": 0.2383,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.1667,
+      "f4_transfer": 0.8813
+    }
+  ],
+  "pareto_front": [
+    "Newton-baryons",
+    "Newton+NFW",
+    "MOND-simple",
+    "PiecewiseRegime",
+    "PR-M4(w=0.615)",
+    "PR-M4(ai=1.05,ao=0.52)",
+    "MOND+corr(r/R0)",
+    "MOND+corr(a_N/a0)",
+    "PR-M4(w+ao frozen)",
+    "PR-only-a0-free",
+    "MOND+corr(r/R0)-universal"
+  ],
+  "gap_candidates": [
+    "PR-only-a0-free"
+  ],
+  "families": [
+    {
+      "name": "Newton-baryons",
+      "k_law": 0,
+      "k_pergalaxy": 2,
+      "structural_complexity": 0.0,
+      "total_complexity": 2.0,
+      "lineage": [],
+      "generation": 0,
+      "mutation": "",
+      "fitness": {
+        "family": "Newton-baryons",
+        "f1_fit": 0.0389,
+        "f2_universality": 1.0,
+        "f3_simplicity": 0.5,
+        "f4_transfer": 0.7601
+      }
+    },
+    {
+      "name": "Newton+NFW",
+      "k_law": 0,
+      "k_pergalaxy": 4,
+      "structural_complexity": 1.0,
+      "total_complexity": 5.0,
+      "lineage": [],
+      "generation": 0,
+      "mutation": "",
+      "fitness": {
+        "family": "Newton+NFW",
+        "f1_fit": 0.432,
+        "f2_universality": 0.4891,
+        "f3_simplicity": 0.2,
+        "f4_transfer": 0.9003
+      }
+    },
+    {
+      "name": "MOND-simple",
+      "k_law": 0,
+      "k_pergalaxy": 2,
+      "structural_complexity": 2.0,
+      "total_complexity": 4.0,
+      "lineage": [],
+      "generation": 0,
+      "mutation": "",
+      "fitness": {
+        "family": "MOND-simple",
+        "f1_fit": 0.2158,
+        "f2_universality": 1.0,
+        "f3_simplicity": 0.25,
+        "f4_transfer": 0.8786
+      }
+    },
+    {
+      "name": "PiecewiseRegime",
+      "k_law": 4,
+      "k_pergalaxy": 2,
+      "structural_complexity": 7.0,
+      "total_complexity": 13.0,
+      "lineage": [],
+      "generation": 0,
+      "mutation": "",
+      "fitness": {
+        "family": "PiecewiseRegime",
+        "f1_fit": 0.3622,
+        "f2_universality": 0.3024,
+        "f3_simplicity": 0.0769,
+        "f4_transfer": 0.907
+      }
+    },
+    {
+      "name": "PiecewiseRegime-universal",
+      "k_law": 0,
+      "k_pergalaxy": 2,
+      "structural_complexity": 7.0,
+      "total_complexity": 9.0,
+      "lineage": [],
+      "generation": 0,
+      "mutation": "",
+      "fitness": {
+        "family": "PiecewiseRegime-universal",
+        "f1_fit": 0.2317,
+        "f2_universality": 1.0,
+        "f3_simplicity": 0.1111,
+        "f4_transfer": 0.8761
+      }
+    },
+    {
+      "name": "PR-M4(w=0.615)",
+      "k_law": 3,
+      "k_pergalaxy": 2,
+      "structural_complexity": 7.0,
+      "total_complexity": 12.0,
+      "lineage": [
+        "PiecewiseRegime"
+      ],
+      "generation": 1,
+      "mutation": "M4: froze w=0.6149 from PiecewiseRegime",
+      "fitness": {
+        "family": "PR-M4(w=0.615)",
+        "f1_fit": 0.4194,
+        "f2_universality": 0.693,
+        "f3_simplicity": 0.0833,
+        "f4_transfer": 0.9058
+      }
+    },
+    {
+      "name": "PR-M4(ai=1.05,ao=0.52)",
+      "k_law": 2,
+      "k_pergalaxy": 2,
+      "structural_complexity": 7.0,
+      "total_complexity": 11.0,
+      "lineage": [
+        "PiecewiseRegime"
+      ],
+      "generation": 1,
+      "mutation": "M4: froze alpha_inner=1.0523, alpha_outer=0.5224",
+      "fitness": {
+        "family": "PR-M4(ai=1.05,ao=0.52)",
+        "f1_fit": 0.3965,
+        "f2_universality": 0.4199,
+        "f3_simplicity": 0.0909,
+        "f4_transfer": 0.9017
+      }
+    },
+    {
+      "name": "MOND+corr(r/R0)",
+      "k_law": 2,
+      "k_pergalaxy": 2,
+      "structural_complexity": 4.0,
+      "total_complexity": 8.0,
+      "lineage": [
+        "MOND-simple"
+      ],
+      "generation": 1,
+      "mutation": "M2: added correction term (r/R0)^p to MOND-simple",
+      "fitness": {
+        "family": "MOND+corr(r/R0)",
+        "f1_fit": 0.5198,
+        "f2_universality": 0.2161,
+        "f3_simplicity": 0.125,
+        "f4_transfer": 0.9045
+      }
+    },
+    {
+      "name": "MOND+corr(a_N/a0)",
+      "k_law": 2,
+      "k_pergalaxy": 2,
+      "structural_complexity": 4.0,
+      "total_complexity": 8.0,
+      "lineage": [
+        "MOND-simple"
+      ],
+      "generation": 1,
+      "mutation": "M2: added correction term (a_N/a0)^p to MOND-simple",
+      "fitness": {
+        "family": "MOND+corr(a_N/a0)",
+        "f1_fit": 0.4554,
+        "f2_universality": 0.1608,
+        "f3_simplicity": 0.125,
+        "f4_transfer": 0.9088
+      }
+    },
+    {
+      "name": "PR-M4(w+ao frozen)",
+      "k_law": 2,
+      "k_pergalaxy": 2,
+      "structural_complexity": 7.0,
+      "total_complexity": 11.0,
+      "lineage": [
+        "PR-M4(w=0.615)"
+      ],
+      "generation": 2,
+      "mutation": "M4: froze w=0.6149 and alpha_outer=0.5224",
+      "fitness": {
+        "family": "PR-M4(w+ao frozen)",
+        "f1_fit": 0.3923,
+        "f2_universality": 0.6968,
+        "f3_simplicity": 0.0909,
+        "f4_transfer": 0.9009
+      }
+    },
+    {
+      "name": "PR-only-a0-free",
+      "k_law": 1,
+      "k_pergalaxy": 2,
+      "structural_complexity": 7.0,
+      "total_complexity": 10.0,
+      "lineage": [
+        "PR-M4(w+ao frozen)"
+      ],
+      "generation": 2,
+      "mutation": "M4: froze ai=1.0523, ao=0.5224, w=0.6149. Only a0 free.",
+      "fitness": {
+        "family": "PR-only-a0-free",
+        "f1_fit": 0.3736,
+        "f2_universality": 0.8963,
+        "f3_simplicity": 0.1,
+        "f4_transfer": 0.8983
+      }
+    },
+    {
+      "name": "MOND+corr(r/R0)-universal",
+      "k_law": 0,
+      "k_pergalaxy": 2,
+      "structural_complexity": 4.0,
+      "total_complexity": 6.0,
+      "lineage": [
+        "MOND+corr(r/R0)"
+      ],
+      "generation": 2,
+      "mutation": "M4: froze c1=-0.2502, p1=-0.2838 from MOND+corr(r/R0)",
+      "fitness": {
+        "family": "MOND+corr(r/R0)-universal",
+        "f1_fit": 0.2703,
+        "f2_universality": 1.0,
+        "f3_simplicity": 0.1667,
+        "f4_transfer": 0.8924
+      }
+    },
+    {
+      "name": "MOND+corr(a/a0)-universal",
+      "k_law": 0,
+      "k_pergalaxy": 2,
+      "structural_complexity": 4.0,
+      "total_complexity": 6.0,
+      "lineage": [
+        "MOND+corr(a_N/a0)"
+      ],
+      "generation": 2,
+      "mutation": "M4: froze c1=-0.0974, p1=0.1164",
+      "fitness": {
+        "family": "MOND+corr(a/a0)-universal",
+        "f1_fit": 0.2383,
+        "f2_universality": 1.0,
+        "f3_simplicity": 0.1667,
+        "f4_transfer": 0.8813
+      }
+    }
+  ]
+}
