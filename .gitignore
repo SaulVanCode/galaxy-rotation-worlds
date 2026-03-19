@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+dist/
+build/
+data/sparc/*.dat
+data/sparc/*.txt
+artifacts/per_galaxy/
+artifacts/aggregate/
+artifacts/plots/
+.env
