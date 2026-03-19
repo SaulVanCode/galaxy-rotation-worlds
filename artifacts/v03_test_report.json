@@ -1,0 +1,104 @@
+{
+  "version": "v0.3-gen2",
+  "n_test_galaxies": 30,
+  "fitness_vectors": [
+    {
+      "family": "Newton-baryons",
+      "f1_fit": 0.0225,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.5,
+      "f4_transfer": 0.7381
+    },
+    {
+      "family": "Newton+NFW",
+      "f1_fit": 0.5201,
+      "f2_universality": 0.4792,
+      "f3_simplicity": 0.2,
+      "f4_transfer": 0.9074
+    },
+    {
+      "family": "MOND-simple",
+      "f1_fit": 0.2607,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.25,
+      "f4_transfer": 0.8855
+    },
+    {
+      "family": "PiecewiseRegime",
+      "f1_fit": 0.4238,
+      "f2_universality": 0.5752,
+      "f3_simplicity": 0.0769,
+      "f4_transfer": 0.9078
+    },
+    {
+      "family": "PR-only-a0-free",
+      "f1_fit": 0.3892,
+      "f2_universality": 0.9148,
+      "f3_simplicity": 0.1,
+      "f4_transfer": 0.893
+    },
+    {
+      "family": "MOND+corr(r/R0)-universal",
+      "f1_fit": 0.2513,
+      "f2_universality": 1.0,
+      "f3_simplicity": 0.1667,
+      "f4_transfer": 0.8859
+    }
+  ],
+  "pareto_front": [
+    "Newton-baryons",
+    "Newton+NFW",
+    "MOND-simple",
+    "PiecewiseRegime",
+    "PR-only-a0-free",
+    "MOND+corr(r/R0)-universal"
+  ],
+  "aggregate_bic": {
+    "Newton-baryons": {
+      "median_bic": 635.4183612586623,
+      "median_chi2r": 43.3782061047667,
+      "wins": 0,
+      "k_pg": 2
+    },
+    "Newton+NFW": {
+      "median_bic": 28.39364514482597,
+      "median_chi2r": 0.9227646377251071,
+      "wins": 12,
+      "k_pg": 4
+    },
+    "MOND-simple": {
+      "median_bic": 52.67411541105944,
+      "median_chi2r": 2.8358484325689135,
+      "wins": 3,
+      "k_pg": 2
+    },
+    "PiecewiseRegime": {
+      "median_bic": 37.297360084357535,
+      "median_chi2r": 1.359822094918596,
+      "wins": 5,
+      "k_pg": 6
+    },
+    "PR-only-a0-free": {
+      "median_bic": 40.13988288397239,
+      "median_chi2r": 1.5692790070415672,
+      "wins": 6,
+      "k_pg": 3
+    },
+    "MOND+corr(r/R0)-universal": {
+      "median_bic": 58.69884336615514,
+      "median_chi2r": 2.9793067981403,
+      "wins": 4,
+      "k_pg": 2
+    }
+  },
+  "gap_candidate": {
+    "name": "PR-only-a0-free",
+    "confirmed": true,
+    "f1": 0.38921424931248094,
+    "f2": 0.9147918364170221,
+    "f3": 0.1,
+    "f4": 0.8929842001516577,
+    "a0_median": 3.6886914995502087,
+    "a0_iqr": 0.3435826777071638
+  }
+}
