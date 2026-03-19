@@ -1,5 +1,7 @@
 # Galaxy Rotation Worlds
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19104088.svg)](https://doi.org/10.5281/zenodo.19104088)
+
 **An evolution engine that breeds physical laws and tests them against real galaxy data.**
 
 Built on the [SPARC dataset](http://astroweb.cwru.edu/SPARC/) (159 galaxies). Evaluates law families not by a single metric, but by a 4D Pareto front: fit quality, parameter universality, structural simplicity, and predictive transfer.
